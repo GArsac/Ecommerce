@@ -27,45 +27,46 @@
 
                 <div class="navbar-collapse collapse" id="menu">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="Other_pages/profil.html">Profil</a>
-                        </li>
-                        <li>
-                            <a href="Other_pages/connexion.html">Se déconnecter</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
         
-        <form>
+        <form method="post" action="../../controllers/inscription.php">
             <div>
 
                 <p>
                     Nom:
                     <br>
-                    <input type="text" required placeholder="Nom"class="form-control input-sm chat-input">
+                    <input type="text" name="nom" required placeholder="Nom"class="form-control input-sm chat-input">
                 </p>
 
                 <p>
                     Prénom:
                     <br>
-                    <input type="text" required placeholder="Prénom" class="form-control input-sm chat-input">
+                    <input type="text" name="prenom" required placeholder="Prénom" class="form-control input-sm chat-input">
                 </p>
 
                 <p>
                     Adresse mail:
                     <br>
-                    <input type="text" required placeholder="Email" class="form-control input-sm chat-input">
+                    <input type="text" name="mail" required placeholder="Email" class="form-control input-sm chat-input">
                 </p>
 
                 <p>
                     Mot de passe:
                     <br>
-                    <input type="password" required placeholder="Mot de passe" class="form-control input-sm chat-input">
+                    <input type="password" name="mdp" required placeholder="Mot de passe" class="form-control input-sm chat-input">
                 </p>
 
-                <input type="submit" name="confirm">
+                <p>
+                    Confirmation mot de passe:
+                    <br>
+                    <input type="password" name="confmdp" required placeholder="Retapez votre mot de passe" class="form-control input-sm chat-input">
+                </p>
+
+                <button type="submit">Inscription</button>
             </div>
         </form>
 
