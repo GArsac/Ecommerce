@@ -38,16 +38,18 @@
 
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
-                <?php if($hidden == 'false'): ?>
+                <?php
+                    session_start();
+                 ?>
                 <li>
-                    <a href="Other_pages/inscription.html">S'inscrire</a>
+                    <a href="Other_pages/inscription.html">Profil</a>
                 </li>
                 <li>
-                    <a href="Other_pages/connexion.html">Connexion</a>
+                    <a href="Other_pages/connexion.html">Deconnexion</a>
                 </li>
-                <?php else:?>
-                <p>Chocolat</p>
-                <?php endif ?>
+                <li>
+                    <p>Bienvenue <?php echo $_SESSION('prenom'); ?></p>
+                </li>
             </ul>
 
         </div>
