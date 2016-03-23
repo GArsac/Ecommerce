@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="accueil.html">
                 Majstore
             </a>
         </div>
@@ -40,15 +40,13 @@
             <ul class="nav navbar-nav">
                 <?php
                     session_start();
+                    echo 'Bienvenue'.$_SESSION['prenom'];
                  ?>
                 <li>
-                    <a href="Other_pages/inscription.html">Profil</a>
+                    <a href="/Ecommerce/views/Other_pages/profil.html">Profil</a>
                 </li>
                 <li>
-                    <a href="Other_pages/connexion.html">Deconnexion</a>
-                </li>
-                <li>
-                    <p>Bienvenue <?php echo $_SESSION('prenom'); ?></p>
+                    <a href="../../controllers/deconnexion.php">Deconnexion</a>
                 </li>
             </ul>
 

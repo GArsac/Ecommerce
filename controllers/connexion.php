@@ -19,11 +19,13 @@ if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
     $stmt = $db->prepare('SELECT COUNT(id_client) compte FROM Client WHERE email = :mail AND password = :mdp');
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
     $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR, 255);
-    $data[0]=$stmt->execute();
-    if ($data[0]->compte == 1) {
+    $stmt->execute();
+    $result= $stmt->fetch();
+    print_r($result);
+    if ($result->compte == 1) {
         session_start();
         $_SESSION['mail'] = $mail;
-        echo 'Connecté';
+        header('Location:/Ecommerce/views/Other_pages/accueil.html');
     }else {
             echo 'NOT CONNECTED';
         }

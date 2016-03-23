@@ -1,3 +1,3 @@
 <?php
 session_destroy();
-header('Location:/index.html');
+header('Location:/Ecommerce/views/index.html');
