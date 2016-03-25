@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/Ecommerce/viewscss/main.css">
 </head>
 <body>
 
@@ -29,41 +29,33 @@
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/Ecommerce/views/Other_pages/profil.html">Profil</a>
-                </li>
-
-                <li>
                     <a href="/Ecommerce/controllers/deconnexion.php">Se déconnecter</a>
+                </li>
+                <li>
+                    <a href="/Ecommerce/views/Other_pages/modif_profil.html">Modifier le profil</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="post" action="/Ecommerce/controllers/modif.php">
-    <div>
+<form class="center">
+    <div class="center">
 
         <p>
-            Nom:
-            <br>
-            <input type="text" name="nom" placeholder="Nom" class="form-control input-sm chat-input">
+            <?php
+                require '/Ecommerce/controllers/connexion.php';
+                echo 'Banana';
+                echo 'Nom:'.$_SESSION['mail'];
+                echo 'Prenom'.$_SESSION['Prenom'];
+            ?>
+
+
         </p>
 
-        <p>
-            Prénom:
-            <br>
-            <input type="text" name="prenom" placeholder="Prénom" class="form-control input-sm chat-input">
-        </p>
-
-        <p>
-            Mot de passe:
-            <br>
-            <input type="password" name="mdp" placeholder="Mot de passe" class="form-control input-sm chat-input">
-        </p>
-
-        <button type="submit">Modifier</button>
     </div>
 </form>
 
-
+<p>
+</p>
 </body>
 </html>

@@ -19,7 +19,7 @@ if( !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) 
     /*Vérifie si les champs confirmation mot de passe et mot de passe*/
     if ($_POST['confmdp'] == $_POST['mdp']) {
         /*Préparation de la requête sql*/
-        $stmt = $db->prepare('INSERT INTO Client SET email= :mail, nom= :nom,prenom= :prenom,password = :mdp');
+        $stmt = $db->prepare($inscription);
         $stmt->bindParam(':mail', $_POST['mail'], PDO::PARAM_STR, 255);
         $stmt->bindParam(':nom', $_POST['nom'], PDO::PARAM_STR, 255);
         $stmt->bindParam(':prenom', $_POST['prenom'], PDO::PARAM_STR, 255);
