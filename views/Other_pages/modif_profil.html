@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
@@ -29,17 +29,17 @@
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/Ecommerce/views/Other_pages/profil.html">Profil</a>
+                    <a href="profil.php">Profil</a>
                 </li>
 
                 <li>
-                    <a href="/Ecommerce/controllers/deconnexion.php">Se déconnecter</a>
+                    <a href="../../controllers/deconnexion.php">Se déconnecter</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="post" action="/Ecommerce/controllers/modif.php">
+<form method="post" action="../../controllers/modif.php">
     <div>
 
         <p>
@@ -55,9 +55,16 @@
         </p>
 
         <p>
+            Adresse:
+            <br>
+            <input type="text" name="address" placeholder="Adresse" class="form-control input-sm chat-input">
+        </p>
+
+        <p>
             Mot de passe:
             <br>
-            <input type="password" name="mdp" placeholder="Mot de passe" class="form-control input-sm chat-input">
+            <input type="password" name="mdp" placeholder="Entrez votre nouveau mot de passe"
+                   class="form-control input-sm chat-input">
         </p>
 
         <button type="submit">Modifier</button>

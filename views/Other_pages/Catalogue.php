@@ -1,13 +1,13 @@
-<html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier votre profil</title>
+    <title>Catalogue</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <link rel="stylesheet" href="/Ecommerce/viewscss/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
@@ -29,33 +29,56 @@
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/Ecommerce/controllers/deconnexion.php">Se déconnecter</a>
+                    <a href="profil.php">Profil</a>
                 </li>
+
                 <li>
-                    <a href="/Ecommerce/views/Other_pages/modif_profil.html">Modifier le profil</a>
+                    <a href="../../controllers/deconnexion.php">Se déconnecter</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="center">
-    <div class="center">
+<table class="rwd-table">
+    <tr>
+        <th>Référence</th>
+        <th>Nom</th>
+        <th>Catégorie</th>
+        <th>Prix</th>
+    </tr>
 
-        <p>
-            <?php
-                require '/Ecommerce/controllers/connexion.php';
-                echo 'Banana';
-                echo 'Nom:'.$_SESSION['mail'];
-                echo 'Prenom'.$_SESSION['Prenom'];
-            ?>
+    <?php
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+    require '../../models/request.php';
+    require '../../models/connect.php';
+    connect($db);
+    $stmt = $db->prepare($catalogue);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
 
+    for ($i = 0; $i < sizeof($result); ++$i) {
+        echo '<tr>';
 
-        </p>
+        echo '<td data-th="Référence">';
+        print_r($result[$i]->id);
+        echo '</td>';
 
-    </div>
-</form>
+        echo '<td data-th="Nom">';
+        print_r($result[$i]->libellé);
+        echo '</td>';
 
-<p>
-</p>
+        echo ' ';
+
+        echo '<td data-th="Prix">';
+        print_r($result[$i]->prix);
+        echo ' €';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+
 </body>
 </html>
