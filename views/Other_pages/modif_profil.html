@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="accueil.html">
-                MajStore
+                <img style="height: 35px; width: 45px;" src="http://www.icone-png.com/png/13/12594.png">
             </a>
         </div>
 

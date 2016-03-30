@@ -21,4 +21,4 @@ $modif_mdp = 'UPDATE Client SET password = :mdp WHERE email = :mail';
 $catalogue = 'SELECT *  FROM Catalogue';
 
 /*Requête affichant le contenu*/
-$panier= 'SELECT libellé,prix FROM Catalogue WHERE id = :id';
+$panier= 'SELECT libellé,prix FROM Catalogue WHERE id_article = :id';

@@ -1,9 +1,9 @@
 /*Pour la page de profil*/
 
 /*Pour la page de connexion*/
-@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+
 body {
-  background-color:#fff;
+  background-color: white;
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
 }
@@ -36,9 +36,14 @@ h4 {
     border-radius: 10px;
 }
 
+.carousel-inner img {
+    margin: auto;
+}
+
 .wrapper {
     text-align: center;
 }
+
 /*Position bouton de la navbar*/
 .right{
     right:100%;
@@ -56,6 +61,6 @@ h4 {
 /*Pour la page de catalogue*/
 #button{
     border-radius: 10px;
-    color: blue;
-
+    color: white;
+    background-color: orangered;
 }

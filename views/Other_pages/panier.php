@@ -22,27 +22,27 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="accueil.html">
-                MajStore
+                <img style="height: 35px; width: 45px;" src="http://www.icone-png.com/png/13/12594.png">
             </a>
         </div>
 
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="../../controllers/deconnexion.php">Se déconnecter</a>
-                </li>
-                <li>
                     <a href="Catalogue.php">Catalogue</a>
                 </li>
                 <li>
                     <a href="modif_profil.html">Modifier le profil</a>
                 </li>
+                <li style="padding-left: inherit;">
+                    <a href="../../controllers/deconnexion.php">Se déconnecter</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="center">
 
+<div class="center">
     <p>
         <?php
         error_reporting(E_ALL);
@@ -53,20 +53,25 @@
         connect($db);
         session_start();
         $stmt = $db->prepare($panier);
-        for ( $index = 1; $index < sizeof($_SESSION['panier']); $index++) {
-            if( !empty($_SESSION['panier'][$index]) ) {
+        for ($index = 1; $index < sizeof($_SESSION['panier']); $index++) {
+            if (!empty($_SESSION['panier'][$index])) {
                 $stmt->bindParam(':id', $_SESSION['panier'][$index], PDO::PARAM_INT, 55);
                 $stmt->execute();
                 $result = $stmt->fetch();
 
-                echo( '<p>' . $result->libellé . ' ' . $result->prix . ' €</p>' );
+                echo('<div class="col-xs-5"><p>' . $result->libellé . ' ' . $result->prix . ' €</p></div>');
                 echo '<form method="post" action="../../controllers/delete_article.php">';
-                echo '<button type="submit" name="valeur" value="' .$_SESSION['panier'][$index]. '" id="button">Supprimer au panier</button>';
+                echo '<button type="submit" class="center btn btn-primary btn-md" name="valeur" value="' . $_SESSION['panier'][$index] . '" id="button">Supprimer du panier</button>';
                 echo '</form>';
             } else {
                 echo '<br>rien<br>';
             }
         }
+
+        if (empty($_SESSION['panier'][1])==false) {
+            echo '<button type="submit" class="center btn btn-primary btn-md" >Passer Commande</button>';
+        }
+
         ?>
     </p>
 

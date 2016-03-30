@@ -9,9 +9,9 @@ require '../models/request.php';
 
 connect($db);
 $mail = $_POST['mail'];
-$mdp = $_POST['mdp'];
+$mdp = hash('md5',$_POST['mdp']);
 
-if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
+if (!empty($mdp) && !empty($mdp)) {
     $stmt = $db->prepare($connexion);
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
     $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR, 255);

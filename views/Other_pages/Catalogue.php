@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="accueil.html">
-                MajStore
+                <img style="height: 35px; width: 45px;" src="http://www.icone-png.com/png/13/12594.png">
             </a>
         </div>
 
@@ -63,7 +63,7 @@
     /*Affichage du catalogue*/
     for ($index = 0; $index < sizeof($result); $index++) {
         /*Affection des résultats*/
-        $ref = $result[$index]->id;
+        $ref = $result[$index]->id_article;
         $nom = $result[$index]->libellé;
         $category = $result[$index]->category;
         $prix = $result[$index]->prix;
@@ -90,7 +90,7 @@
 
         echo '<td>';
         echo '<form method="post" action="../../controllers/ajout_panier.php">';
-        echo '<button type="submit" name="valeur" value="' .$ref. '" id="button">Ajouter au panier</button>';
+        echo '<button type="submit" class="center btn btn-primary btn-md" name="valeur" value="' .$ref. '" id="button">Ajouter au panier</button>';
         echo '</td>';
 
         echo '</tr>';

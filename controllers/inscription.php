@@ -8,17 +8,24 @@ require '../models/connect.php';
 /*Connexion à la base*/
 connect($db);
 /*On prépare la requête*/
-if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['confmdp']) && !empty($_POST['address'])) {
+$nom=$_POST['nom'];
+$prenom=$_POST['prenom'];
+$mdp=hash('md5',$_POST['mdp']);
+$confmdp=hash('md5',$_POST['confmdp']);
+$mail=$_POST['mail'];
+$adress=$_POST['address'];
+
+if (!empty($nom) && !empty($prenom) && !empty($mail) && !empty($mdp) && !empty($confmdp) && !empty($adress)) {
     /*Vérifie si les champs confirmation mot de passe et mot de passe*/
     if ($_POST['confmdp'] == $_POST['mdp']) {
         /*Préparation de la requête sql*/
         $stmt = $db->prepare($inscription);
         /*On lie nos variables à nos paramétres entrés dans la requête*/
-        $stmt->bindParam(':mail', $_POST['mail'], PDO::PARAM_STR, 255);
-        $stmt->bindParam(':nom', $_POST['nom'], PDO::PARAM_STR, 255);
-        $stmt->bindParam(':prenom', $_POST['prenom'], PDO::PARAM_STR, 255);
-        $stmt->bindParam(':mdp', $_POST['mdp'], PDO::PARAM_STR, 255);
-        $stmt->bindParam(':address', $_POST['address'], PDO::PARAM_STR, 255);
+        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
+        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR, 255);
+        $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR, 255);
+        $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR, 255);
+        $stmt->bindParam(':address', $adress, PDO::PARAM_STR, 255);
         /*Lancement de la requête sql*/
         $stmt->execute();
         session_start();
