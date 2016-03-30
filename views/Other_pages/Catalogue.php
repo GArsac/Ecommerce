@@ -31,7 +31,9 @@
                 <li>
                     <a href="profil.php">Profil</a>
                 </li>
-
+                <li>
+                    <a href="panier.php">Panier</a>
+                </li>
                 <li>
                     <a href="../../controllers/deconnexion.php">Se déconnecter</a>
                 </li>
@@ -53,32 +55,53 @@
     require '../../models/request.php';
     require '../../models/connect.php';
     connect($db);
+    session_start();
     $stmt = $db->prepare($catalogue);
     $stmt->execute();
     $result = $stmt->fetchAll();
 
-    for ($i = 0; $i < sizeof($result); ++$i) {
+    /*Affichage du catalogue*/
+    for ($index = 0; $index < sizeof($result); $index++) {
+        /*Affection des résultats*/
+        $ref = $result[$index]->id;
+        $nom = $result[$index]->libellé;
+        $category = $result[$index]->category;
+        $prix = $result[$index]->prix;
+
         echo '<tr>';
 
         echo '<td data-th="Référence">';
-        print_r($result[$i]->id);
+        print_r($ref);
         echo '</td>';
 
         echo '<td data-th="Nom">';
-        print_r($result[$i]->libellé);
+        print_r($nom);
         echo '</td>';
 
-        echo ' ';
+        echo '<td data-th="Catégorie">';
+        print_r($category);
+        echo '</td>';
+
 
         echo '<td data-th="Prix">';
-        print_r($result[$i]->prix);
+        print_r($prix);
         echo ' €';
+        echo '</td>';
+
+        echo '<td>';
+        echo '<form method="post" action="../../controllers/ajout_panier.php">';
+        echo '<button type="submit" name="valeur" value="' .$ref. '" id="button">Ajouter au panier</button>';
         echo '</td>';
 
         echo '</tr>';
     }
+
     ?>
 </table>
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../Javascript/app.js"></script>
 </body>
 </html>

@@ -11,19 +11,23 @@ if (!empty($_POST['nom'])) {
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
     $stmt->bindParam(':nom', $_POST['nom'], PDO::PARAM_STR, 255);
     $stmt->execute();
-    echo 'Success';
 }
 if (!empty($_POST['prenom'])) {
     $stmt = $db->prepare($modif_surname);
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
     $stmt->bindParam(':prenom', $_POST['prenom'], PDO::PARAM_STR, 255);
     $stmt->execute();
-    echo 'Success';
 }
 if (!empty($_POST['address'])) {
     $stmt = $db->prepare($modif_adress);
     $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
     $stmt->bindParam(':address', $_POST['address'], PDO::PARAM_STR, 255);
     $stmt->execute();
-    echo 'Success';
 }
+if (!empty($_POST['address'])) {
+    $stmt = $db->prepare($modif_mdp);
+    $stmt->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
+    $stmt->bindParam(':mdp', $_POST['mdp'], PDO::PARAM_STR, 255);
+    $stmt->execute();
+}
+header('Location:../views/Other_pages/profil.php');

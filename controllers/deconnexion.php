@@ -1,3 +1,5 @@
 <?php
+unset($_SESSION['panier']);
 session_destroy();
-header('Location:/Ecommerce/views/index.html');
+
+header('Location:../views/index.html');
