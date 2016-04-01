@@ -42,18 +42,14 @@
     </div>
 </nav>
 <table class="rwd-table">
-    <tr>
-        <th>Référence</th>
-        <th>Nom</th>
-        <th>Catégorie</th>
-        <th>Prix</th>
-    </tr>
+
 
     <?php
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
     require '../../models/request.php';
     require '../../models/connect.php';
+
     connect($db);
     session_start();
     $stmt = $db->prepare($catalogue);
@@ -67,37 +63,36 @@
         $nom = $result[$index]->libellé;
         $category = $result[$index]->category;
         $prix = $result[$index]->prix;
+        $photo = $result[$index]->photo;
 
-        echo '<tr>';
+        /*Format affichage d'un article*/
+        echo '<div class="col-xs-3" style="padding: 10px;margin: 0 auto;border: 3px solid;">
 
-        echo '<td data-th="Référence">';
-        print_r($ref);
-        echo '</td>';
+        <p class="center" style="text-align:center;">
+        ' . $nom . '
+        </p>
+        <img alt="Image" src="'.$photo.'">
+        <div style="text-align:center;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas amet dolorem iste fuga labore sequi debitis iusto. Cum similique asperiores iste temporibus, dignissimos in non, voluptas quasi accusamus, amet, quod.
+        </div>
 
-        echo '<td data-th="Nom">';
-        print_r($nom);
-        echo '</td>';
+        <div style="float:left;">
+             ' . $prix . '€
+        </div>
 
-        echo '<td data-th="Catégorie">';
-        print_r($category);
-        echo '</td>';
+        <div style="margin: 0;float:right;">
+        <form method="post" action="../../controllers/ajout_panier.php">
+        <button type="submit" class="center btn btn-primary btn-md" name="valeur" value="' . $ref . '" id="button">Ajouter au panier</button>
+        </form>
+        </div>
 
+        </div>';
 
-        echo '<td data-th="Prix">';
-        print_r($prix);
-        echo ' €';
-        echo '</td>';
-
-        echo '<td>';
-        echo '<form method="post" action="../../controllers/ajout_panier.php">';
-        echo '<button type="submit" class="center btn btn-primary btn-md" name="valeur" value="' .$ref. '" id="button">Ajouter au panier</button>';
-        echo '</td>';
-
-        echo '</tr>';
     }
 
     ?>
 </table>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

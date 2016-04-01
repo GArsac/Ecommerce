@@ -23,7 +23,7 @@ if (!empty($mdp) && !empty($mdp)) {
         /* Initialisation du panier */
         $_SESSION['panier'] = array();
         /* Subdivision du panier */
-        $_SESSION['panier'][] = array();
+        $_SESSION['panier']['id'] = array();
 
         header('Location:../views/Other_pages/accueil.html');
     } else {

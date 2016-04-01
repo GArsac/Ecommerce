@@ -9,7 +9,6 @@ body {
 }
 
 .container {
-    padding: 25px;
     position: fixed;
 }
 
@@ -35,11 +34,6 @@ h4 {
 .form-control {
     border-radius: 10px;
 }
-
-.carousel-inner img {
-    margin: auto;
-}
-
 .wrapper {
     text-align: center;
 }
@@ -50,10 +44,6 @@ h4 {
 }
 
 /*Images dans le carousel*/
-.carousel-inner img {
-	margin: auto;
-}
-
 .center{
     text-align: center;
 }

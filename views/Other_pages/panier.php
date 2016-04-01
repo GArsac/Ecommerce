@@ -29,14 +29,15 @@
         <div class="navbar-collapse collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="Catalogue.php">Catalogue</a>
+                    <a href="profil.php">Profil</a>
                 </li>
                 <li>
-                    <a href="modif_profil.html">Modifier le profil</a>
-                </li>
-                <li style="padding-left: inherit;">
                     <a href="../../controllers/deconnexion.php">Se déconnecter</a>
                 </li>
+                <li>
+                    <a href="Catalogue.php">Catalogue</a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -53,26 +54,28 @@
         connect($db);
         session_start();
         $stmt = $db->prepare($panier);
-        for ($index = 1; $index < sizeof($_SESSION['panier']); $index++) {
-            if (!empty($_SESSION['panier'][$index])) {
-                $stmt->bindParam(':id', $_SESSION['panier'][$index], PDO::PARAM_INT, 55);
+        for ($index = 0; $index < sizeof($_SESSION['panier']['id']); $index++) {
+            if (!empty($_SESSION['panier']['id'][$index])) {
+                $stmt->bindParam(':id', $_SESSION['panier']['id'][$index], PDO::PARAM_INT, 55);
                 $stmt->execute();
                 $result = $stmt->fetch();
 
-                echo('<div class="col-xs-5"><p>' . $result->libellé . ' ' . $result->prix . ' €</p></div>');
-                echo '<form method="post" action="../../controllers/delete_article.php">';
-                echo '<button type="submit" class="center btn btn-primary btn-md" name="valeur" value="' . $_SESSION['panier'][$index] . '" id="button">Supprimer du panier</button>';
-                echo '</form>';
-            } else {
-                echo '<br>rien<br>';
+                echo '<div class="col-xs-12"><p><div class="col-sm-6">' . $result->libellé . '</div><div class="col-sm-6"> ' . $result->prix . ' €</div></p></div>';
             }
         }
 
-        if (empty($_SESSION['panier'][1])==false) {
+        if (empty($_SESSION['panier']['id']) == false || $_SESSION['panier']['id'] == NULL) {
+
+            echo '<form method="post" action="../../controllers/delete_article.php">';
+            echo '<button type="submit" class="center btn btn-primary btn-md" name="valeur" id="button">Vider le panier</button>';
+            echo '</form>';
+            echo '<form method="post" action="commande.php">';
             echo '<button type="submit" class="center btn btn-primary btn-md" >Passer Commande</button>';
+            echo '</form>';
         }
 
         ?>
+
     </p>
 
 </div>
